@@ -1,21 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
-export default function Layout({ children, showSidebar }) {
+export default function Layout({ children, showSidebar = true }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen((prev) => !prev);
+  };
+
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
+    <div className="min-h-screen flex flex-col bg-base-100">
+      {/* Single Navbar with responsive design */}
+      <Navbar onToggleSidebar={toggleSidebar} showSidebar={showSidebar} />
 
-      {/* Main Content */}
       <div className="flex flex-1">
-        {/* Sidebar */}
-        {showSidebar && <Sidebar />}
+        {/* Sidebar - only show if showSidebar prop is true */}
+        {showSidebar && <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />}
 
-        {/* Children */}
-        <div className={`flex-1 p-4 ${showSidebar ? "ml-64" : ""}`}>
+        {/* Main Content */}
+        <main className={`flex-1 ${showSidebar ? "lg:ml-64" : ""} pt-4`}>
           {children}
-        </div>
+        </main>
       </div>
     </div>
   );

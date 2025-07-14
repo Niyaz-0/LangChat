@@ -58,6 +58,7 @@ export default function Home() {
           </Link>
         </div>
 
+        {/* Friends section - responsive grid */}
         {loadingFriends ? (
           <div className="flex justify-center py-12">
             <span className="loading loading-spinner loading-lg" />
@@ -72,6 +73,7 @@ export default function Home() {
           </div>
         )}
 
+        {/* Meet New Learners section */}
         <section>
           <div className="mb-6 sm:mb-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
