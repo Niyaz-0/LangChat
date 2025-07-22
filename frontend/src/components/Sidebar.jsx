@@ -18,14 +18,17 @@ export default function Sidebar({ isOpen, onClose }) {
         ></div>
       )}
 
-      {/* Sidebar - changes position based on screen size */}
+      {/* Sidebar - adjust height to account for navbar */}
       <div
-        className={`fixed top-0 left-0 h-screen w-64 flex flex-col justify-between pt-16 lg:pt-24 bg-base-200 z-30 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 h-[calc(100vh-0px)] lg:h-[calc(100vh-58px)] w-64 flex flex-col bg-base-200 z-30 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
-        } lg:static lg:z-10`}
+        } lg:static lg:z-10 lg:top-[58px]`}
       >
-        {/* Navigation Links */}
-        <nav className="flex flex-col p-4 space-y-1">
+        {/* Top padding area */}
+        <div className="h-16 lg:h-6"></div>
+
+        {/* Scrollable navigation area */}
+        <nav className="flex-1 flex flex-col p-4 space-y-1 overflow-y-auto">
           <Link
             to="/"
             className={`btn btn-ghost px-4 w-full justify-start rounded-3xl text-base font-medium ${
@@ -60,8 +63,8 @@ export default function Sidebar({ isOpen, onClose }) {
           </Link>
         </nav>
 
-        {/* User Profile */}
-        <div className="flex gap-4 p-6 items-center">
+        {/* User Profile - always visible */}
+        <div className="flex gap-4 p-6 items-center border-t border-base-300">
           <img
             src={authUser?.profilePic}
             alt="profile pic"

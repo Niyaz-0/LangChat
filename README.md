@@ -4,7 +4,7 @@
 LangChat is a comprehensive platform designed for language learners to connect, practice, and improve their skills through real-time conversations. The application facilitates finding language exchange partners based on your native and target languages.
 
 <p align="center">
-  <img src="./path/to/your/logo.png" alt="LangChat Logo" width="200">
+  <img src="./frontend/public/logo.svg" alt="LangChat Logo" width="200">
 </p>
 
 ## Features
@@ -19,7 +19,7 @@ LangChat is a comprehensive platform designed for language learners to connect, 
 - 📱 **Responsive Design** - Works seamlessly on desktop and mobile devices
 
 <p align="center">
-  <img src="./path/to/screenshots/home-page.png" alt="Home Page" width="700">
+  <img src="./screenshots/home.png" alt="Home Page" width="700">
 </p>
 
 ## Tech Stack
@@ -42,7 +42,7 @@ LangChat is a comprehensive platform designed for language learners to connect, 
 - RESTful API design
 
 <p align="center">
-  <img src="./path/to/screenshots/chat-interface.png" alt="Chat Interface" width="700">
+  <img src="./screenshots/chat.png" alt="Chat Interface" width="700">
 </p>
 
 ## Installation and Setup
@@ -75,7 +75,8 @@ VITE_STREAM_API_KEY=your_stream_api_key
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/langchat.git
+git clone https://github.com/Niyaz-0/langchat.git
+
 cd langchat
 
 # Install root dependencies
@@ -101,7 +102,7 @@ npm run dev
 ```
 
 <p align="center">
-  <img src="./path/to/screenshots/login-screen.png" alt="Login Screen" width="500">
+  <img src="./screenshots/login.png" alt="Login Screen" width="500">
 </p>
 
 ## Usage
@@ -121,7 +122,7 @@ npm run dev
 7. Initiate video calls for speaking practice
 
 <p align="center">
-  <img src="./path/to/screenshots/onboarding.png" alt="Onboarding Process" width="600">
+  <img src="./screenshots/onboarding.png" alt="Onboarding Process" width="600">
 </p>
 
 ## Project Structure
@@ -179,7 +180,7 @@ npm run dev
 - `/call/:id` - Video call interface
 
 <p align="center">
-  <img src="./path/to/screenshots/mobile-responsive.png" alt="Mobile Responsive Design" width="300">
+  <img src="./screenshots/mobile_responsive.png" alt="Mobile Responsive Design" width="300">
 </p>
 
 ## Build and Deployment
@@ -204,10 +205,5 @@ To start the production server:
 npm start
 ```
 
-## License
+## Made By Niyaz for language learners
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-Made with ❤️ for language learners worldwide.

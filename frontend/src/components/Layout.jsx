@@ -22,8 +22,8 @@ export default function Layout({ children, showSidebar = true }) {
         {/* Sidebar - only show if showSidebar prop is true */}
         {showSidebar && <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />}
 
-        {/* Main Content */}
-        <main className={`flex-1 ${showSidebar ? "lg:ml-64" : ""} pt-4`}>
+        {/* Main Content - removed lg:ml-64 */}
+        <main className="flex-1 pt-4 w-full">
           {children}
         </main>
       </div>

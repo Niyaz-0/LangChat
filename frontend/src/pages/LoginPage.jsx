@@ -32,7 +32,6 @@ export default function LoginPage() {
   return (
     <div
       className="flex h-screen items-center justify-center p-4 sm:p-6 md:p-8"
-      data-theme="forest"
     >
       <div className="flex flex-col md:flex-row rounded-2xl gap-5 w-full max-w-4xl border border-gray-200 border-opacity-30">
         {/* Left Section */}
