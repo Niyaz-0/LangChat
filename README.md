@@ -1,4 +1,3 @@
-
 # LangChat - Real-Time Language Exchange Chat Application
 
 LangChat is a comprehensive platform designed for language learners to connect, practice, and improve their skills through real-time conversations. The application facilitates finding language exchange partners based on your native and target languages.
@@ -6,6 +5,8 @@ LangChat is a comprehensive platform designed for language learners to connect, 
 <p align="center">
   <img src="./frontend/public/logo.svg" alt="LangChat Logo" width="200">
 </p>
+
+**🚀 Live Demo: [LangChat App](https://langchat-zhwz.onrender.com/)**
 
 ## Features
 
