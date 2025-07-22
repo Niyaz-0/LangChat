@@ -15,10 +15,15 @@ const __dirname = path.resolve();
 const PORT = process.env.PORT || 5000;
 
 app.use(cookieParser())
-app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true, 
-}));
+
+const corsOptions = {
+  origin: process.env.NODE_ENV === "production" 
+    ? "https://langchat-zhwz.onrender.com"  
+    : "http://localhost:5173",
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
@@ -31,11 +36,11 @@ if(process.env.NODE_ENV === "production") {
     app.use(express.static(path.join( __dirname, "../frontend/dist" )))
 
     app.get("*", (req, res) => {
-        app.use(express.static(path.join(__dirname, "../frontend", "dist", "index.html")))
-    })
+      res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+    });
 }
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
     connectDb()
     console.log(`Server listening on PORT ${PORT}...`);
 });

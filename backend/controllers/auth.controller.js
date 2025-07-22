@@ -56,8 +56,8 @@ export const signup = async (req, res) => {
     res.cookie("jwt", token, {
       maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: "strict",
-      secure: false   // process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+      secure: process.env.NODE_ENV === "production",
     });
 
     res.status(201).json({ message: "User created successfully", newUser });
@@ -92,8 +92,8 @@ export const login = async (req, res) => {
     res.cookie("jwt", token, {
       maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: "strict",
-      secure: false, // process.env.NODE_ENV === "production"
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+      secure: process.env.NODE_ENV === "production",
     });
 
     res.status(200).json({ message: "User signed in successfully", user });
@@ -109,43 +109,49 @@ export const logout = async (req, res) => {
 };
 
 export const onboard = async (req, res) => {
-    try {
-        console.log(req.user)
-        const userId = req.user._id;
+  try {
+    console.log(req.user);
+    const userId = req.user._id;
 
-        const { username, bio, nativeLanguage, learningLanguage, location } = req.body;
-        if (!username || !bio || !nativeLanguage || !learningLanguage || !location) {
-            return res.status(400).json({ message: "All fields are required!!" });
-        }
-
-        const updatedUser = await User.findByIdAndUpdate(
-            userId,
-            {
-                ...req.body,
-                isOnBoarded: true,
-            },
-            { new: true }
-        );
-        if (!updatedUser) {
-            return res.status(404).json({ message: "User not found!!" });
-        }
-
-        try {
-            await upsertStreamUser({
-                id: updatedUser._id.toString(),
-                name: updatedUser.username,
-                image: updatedUser.profilePic || "",
-            });
-        } catch (error) {
-            console.log("Error updating stream user during onboarding", error);
-            res.status(500).json({ message: "Internal Server Error!!" });
-            return;
-        }
-
-        res.status(200).json({ message: "User updated successfully", updatedUser})
-
-    } catch (error) {
-        console.log("Error in onboarding", error);
-        res.status(500).json({ message: "Internal Server Error!!" });
+    const { username, bio, nativeLanguage, learningLanguage, location } =
+      req.body;
+    if (
+      !username ||
+      !bio ||
+      !nativeLanguage ||
+      !learningLanguage ||
+      !location
+    ) {
+      return res.status(400).json({ message: "All fields are required!!" });
     }
-}
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        ...req.body,
+        isOnBoarded: true,
+      },
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found!!" });
+    }
+
+    try {
+      await upsertStreamUser({
+        id: updatedUser._id.toString(),
+        name: updatedUser.username,
+        image: updatedUser.profilePic || "",
+      });
+    } catch (error) {
+      console.log("Error updating stream user during onboarding", error);
+      res.status(500).json({ message: "Internal Server Error!!" });
+      return;
+    }
+
+    res.status(200).json({ message: "User updated successfully", updatedUser });
+  } catch (error) {
+    console.log("Error in onboarding", error);
+    res.status(500).json({ message: "Internal Server Error!!" });
+  }
+};
