@@ -6,7 +6,7 @@ LangChat is a comprehensive platform designed for language learners to connect, 
   <img src="./frontend/public/logo.svg" alt="LangChat Logo" width="200">
 </p>
 
-**🚀 Live Demo: [LangChat App](https://langchat-zhwz.onrender.com/)**
+**🚀 Live Demo: [LangChat App](https://langchat-pzv5.onrender.com/)**
 
 ## Features
 
